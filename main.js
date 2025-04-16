@@ -68,8 +68,8 @@ window.addEventListener("mousedown", (event) =>{
     const breakingAffConstanteX = (event.screenX/(innerWidth/15.7))
     const breakingAffConstanteY = (event.screenY/(innerWidth/15.7))-0.7
     if(data.isInventaire === false){
-        casser(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
         data.isInteracting = true;
+        casser(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
     }
 })
 
