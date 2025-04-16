@@ -1,0 +1,80 @@
+import { map } from "./world/map.js";
+import { data,frame,vide  } from "./world/data.js";
+import { img , constante, statuBloc, statuPlayer,obj} from "./screen/img.js";
+import { left ,right,jump,falling,running} from "./interaction/mouv.js";
+import { casser } from "./interaction/interactionMap.js";
+import { inventaire } from "./player/inventaire.js";
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+
+export function screenFond(x,y){
+    ctx.drawImage(img.Air,((constante*3)*x)-(constante*3*(data.marginX/100)),((constante*3)*(22-y))-(constante*3*(data.marginY/100)),constante*3,constante*3)
+}
+export function screen(x,y){
+    var matrice = map[data.cY - 12 + y][data.cX - 9 + x]
+    ctx.drawImage(img[matrice],((constante*3)*x)-(constante*3*(data.marginX/100)),((constante*3)*(22-y))-(constante*3*(data.marginY/100)),constante*3,constante*3)
+};
+export function sreenPlayerH(){
+    var playerState = data.playerStateH
+    ctx.drawImage(statuPlayer[playerState],(constante*3)*9,(constante*3)*9,constante*3,constante*3*2)
+};
+export function sreenPlayer(){
+    var playerState = data.playerState
+    ctx.drawImage(statuPlayer[playerState],(constante*3)*9,(constante*3)*10,constante*3,constante*3)
+};
+export function casseraff(){
+    if(data.statuBloc != "stat0"){
+        var statu = data.statuBloc
+    ctx.drawImage(statuBloc[statu],((constante*3)*(data.blockXCasser+1))-(constante*3*(data.marginX/100)),((constante*3)*(data.blockYCasser+6))-(constante*3*(data.marginY/100)),constante*3,constante*3)
+    };
+};
+export function inventaireAffichage(){
+    var vide = []
+    if(data.isInventaire){
+        ctx.drawImage(img.Inventaire,(innerWidth/21)*6,((innerWidth/21)*3*2)-((innerHeight-innerWidth)*1.5),(innerWidth/21)*3*13,((innerWidth/21)*3*13)*(9/16))
+        for(var y = 0;y<inventaire.length;y++){
+            for(var x = 0; x<inventaire[0].length;x++){
+                if(inventaire[y][x][0] === vide){}
+                else{};
+            };
+        };
+    };
+};
+export function objInventaireAffichage(matrice,x,y){
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),(innerWidth*3/19)*(y+7.80),innerWidth*3/35,innerWidth*3/35)
+}
+frame(data.frame)
+falling()
+document.oncontextmenu = function() {
+    return false;
+  }
+  
+
+window.addEventListener("keydown",(event) =>{
+    if((event.code === "KeyA" || event.code === "ArrowLeft")){left()}
+    else if((event.code === "KeyD" || event.code === "ArrowRight")){right()};
+})
+
+window.addEventListener("keydown",(event) =>{
+    if(event.code === "ShiftLeft"){running()}
+})
+
+window.addEventListener("keydown",(event) =>{
+    if(event.code === "Space" && data.spaceIsPress === false){jump()}
+})
+
+window.addEventListener("mousedown", (event) =>{
+    const breakingAffConstanteX = (event.screenX/(innerWidth/15.7))
+    const breakingAffConstanteY = (event.screenY/(innerWidth/15.7))-0.7
+    if(data.isInventaire === false){
+        casser(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
+        data.isInteracting = true;
+    }
+})
+
+window.addEventListener("keypress",(event) =>{
+    if(event.code === "KeyE" && data.isInventaire){data.isInventaire = false}
+    else if(event.code === "KeyE" && data.isInventaire === false){data.isInventaire = true}
+})
+
