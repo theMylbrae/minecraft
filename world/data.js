@@ -36,6 +36,7 @@ export const data = {
     isGoingLeft : true,
     playerStatuMouv : 0,
     isInteracting : false,
+    inventaireIsInMain : false,
 }; 
 data.cX = (map[0].length-1)/2
 data.cY = ((map.length-1)/2)+100

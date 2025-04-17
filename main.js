@@ -32,20 +32,15 @@ export function casseraff(){
 export function inventaireAffichage(){
     var vide = []
     if(data.isInventaire){
-        ctx.drawImage(img.Inventaire,(innerWidth/21)*6,((innerWidth/21)*3*2)-((innerHeight-innerWidth)*1.5),(innerWidth/21)*3*13,((innerWidth/21)*3*13)*(9/16))
-        for(var y = 0;y<inventaire.length;y++){
-            for(var x = 0; x<inventaire[0].length;x++){
-                if(inventaire[y][x][0] === vide){}
-                else{};
-            };
-        };
+        ctx.drawImage(img.Inventaire,(innerWidth/21)*6,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,(innerWidth/21)*3*13,((innerWidth/21)*3*13)*(9/16));
+        ctx.drawImage(img.Tabledecraftinterne,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,constante*8,constante*8);
     };
 };
 export function objInventaireAffichage(matrice,x,y){
-    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(y+6.2),innerWidth*3/35,innerWidth*3/35)
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.1)*(y+6.2),innerWidth*3/35,innerWidth*3/35)
 };
 export function objInventaireAffichage0(matrice,x){
-    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(11.38),innerWidth*3/35,innerWidth*3/35)
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(11.6),innerWidth*3/35,innerWidth*3/35)
 };
 frame(data.frame)
 falling()

@@ -1,8 +1,10 @@
 import { data, main, piocheBois } from "../world/data.js";
 import { objInventaireAffichage,objInventaireAffichage0 } from "../main.js";
 
-export let inventaire = [[['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
-
+export let inventaire = [[['Terre', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['Terre', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
+export let inventaireCarftingTable = [[['', 0],['', 0]],[['', 0],['', 0]]];
+let ancienCoordonnee = [0,0];
+let inMain = ['',0] ;
 export function InInventaire(){
     for(var y = 0;y<inventaire.length; y++){
         for(var x = 0;x<inventaire[0].length;x++){
@@ -54,3 +56,17 @@ export function chargeAfficheAventure(){
     };
 };
 
+export function isOnSlot(x,y){
+    if(y > (innerHeight/5)*4){
+
+    }else{
+        inMain[0] = inventaire[Math.floor(y/(innerHeight/5)+1)][Math.floor(x/(((innerWidth/21)*3*13)/10))][0];
+        inMain[1] = inventaire[Math.floor(y/(innerHeight/5)+1)][Math.floor(x/(innerWidth/10))][1];
+    };
+}
+
+window.addEventListener("click",(event) =>{
+    const coordonneeX = event.clientX
+    const coordonneeY = event.clientY
+    isOnSlot(coordonneeX,coordonneeY)
+});

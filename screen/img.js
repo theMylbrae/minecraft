@@ -9,9 +9,11 @@ export const img = {
     Fer : new Image(),
     Diamand : new Image(),
     Inventaire : new Image(),
+    Tabledecraftinterne : new Image(),
 };
 
 img.Inventaire.src = "../texture/player/interaction/inventaire.png"
+img.Tabledecraftinterne.src = "../texture/player/interaction/tabledevraftinterne.png"
 
 img.Air.src = "../texture/blocs/Air.png";
 img.Pierre.src = "../texture/blocs/Pierre.png";
