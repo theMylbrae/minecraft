@@ -47,9 +47,9 @@ export function chargeAfficheAventure(){
         for(var y = 0; y < inventaire.length;y++){
             for(var x = 0;x < inventaire[0].length;x++){
                 if(y === 0){
-                    if(inventaire[y][x][0] != ""){objInventaireAffichage0(inventaire[y][x][0],x)};
+                    if(inventaire[y][x][0] != ""){objInventaireAffichage0(inventaire[y][x][0],inventaire[y][x][1]+"",x)};
                 }else{
-                    if(inventaire[y][x][0] != ""){objInventaireAffichage(inventaire[y][x][0],x,y)};
+                    if(inventaire[y][x][0] != ""){objInventaireAffichage(inventaire[y][x][0],inventaire[y][x][1]+"",x,y)};
                 };
             };
         };
@@ -59,12 +59,17 @@ export function chargeAfficheAventure(){
 function isOnSlot(x,y){
     var constanteX = Math.floor((x/(innerWidth/15.7)))-1
     var constanteY = Math.floor(y/(innerHeight/5))+1
-    if(constanteX < 10 && data.isInventaire){
+    if(0 <= constanteX < 10 && data.isInventaire){
         if(constanteY >= 5){
+            ancienCoordonnee[0] = 0; 
+            ancienCoordonnee[1] = constanteX; 
+            console.log(constanteX)
             inMain[0] = inventaire[0][constanteX][0];
             inMain[1] = inventaire[0][constanteX][1];
             inventaire[0][constanteX][0] = "";
         }else{
+            ancienCoordonnee[0] = constanteY; 
+            ancienCoordonnee[1] = constanteX; 
             inMain[0] = inventaire[constanteY][constanteX][0];
             inMain[1] = inventaire[constanteY][constanteX][1];
             inventaire[constanteY][constanteX][0] = "";
@@ -74,21 +79,26 @@ function isOnSlot(x,y){
 function depotOnSlot(x,y){
     var constanteX = Math.floor((x/(innerWidth/15.7)))-1
     var constanteY = Math.floor(y/(innerHeight/5))+1
-    if(constanteX < 10 && data.isInventaire){
-        if(constanteY >= 5){
-            if(inventaire[0][constanteX][0] === ""){
-                inventaire[0][constanteX][0] = inMain[0]; 
-                inventaire[0][constanteX][1] = inMain[1];
-                inMain[0] = ""
-            };
-        }else{
-            if(inventaire[constanteY][constanteX][0] === ""){
-                inventaire[constanteY][constanteX][0] = inMain[0]; 
-                inventaire[constanteY][constanteX][1] = inMain[1];
-                inMain[0] = ""
-            };
-        };
-    };
+    if(0 <= constanteX < 10 && data.isInventaire){
+        if(constanteY >= 5 && inventaire[0][constanteX][0] === ""){
+            inventaire[0][constanteX][0] = inMain[0]; 
+            inventaire[0][constanteX][1] = inMain[1];
+            inMain[0] = ""
+        }else if(constanteY != 5 && inventaire[constanteY][constanteX][0] === ""){
+            inventaire[constanteY][constanteX][0] = inMain[0]; 
+            inventaire[constanteY][constanteX][1] = inMain[1];
+            inMain[0] = ""
+        }else if (inMain[0] != ""){
+            console.log(ancienCoordonnee)
+            inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][0] = inMain[0];
+            inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][1] = inMain[1];
+            inMain[0] = ""
+        }
+    }else if (inMain[0] != "" && data.isInventaire){
+        inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][0] = inMain[0];
+        inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][1] = inMain[1];
+        inMain[0] = ""
+    }
 };
 let coordonneeX = 0;
 let coordonneeY = 0;
@@ -99,7 +109,7 @@ window.addEventListener("mousedown",(event) =>{
     isOnSlot(coordonneeX,coordonneeY)
 });
 
-window.addEventListener("mouseup" , () => {
+window.addEventListener("mouseup" , (event) => {
     coordonneeX = event.clientX
     coordonneeY = event.clientY
     depotOnSlot(coordonneeX,coordonneeY)

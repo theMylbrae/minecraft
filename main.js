@@ -36,11 +36,15 @@ export function inventaireAffichage(){
         ctx.drawImage(img.Tabledecraftinterne,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,constante*8,constante*8);
     };
 };
-export function objInventaireAffichage(matrice,x,y){
-    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.1)*(y+6.2),innerWidth*3/35,innerWidth*3/35)
+export function objInventaireAffichage(matrice,nbr,x,y){
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.1)*(y+6.2),innerWidth*3/35,innerWidth*3/35);
+    ctx.font = innerWidth/19+"px" +" serif";
+    ctx.fillText(nbr,(innerWidth*3/19)*(x+3.3),((innerWidth*3)/17.1)*(y+6.8));
 };
-export function objInventaireAffichage0(matrice,x){
-    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(11.6),innerWidth*3/35,innerWidth*3/35)
+export function objInventaireAffichage0(matrice,nbr,x){
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(11.6),innerWidth*3/35,innerWidth*3/35);
+    ctx.font = innerWidth/19+"px" +" serif";
+    ctx.fillText(nbr,(innerWidth*3/19)*(x+3.3),((innerWidth*3)/17.5)*(12.2));
 };
 frame(data.frame)
 falling()
