@@ -1,7 +1,7 @@
 import { data, main, piocheBois } from "../world/data.js";
 import { objInventaireAffichage,objInventaireAffichage0 } from "../main.js";
 
-export let inventaire = [[['Terre', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['Terre', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
+export let inventaire = [[['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
 export let inventaireCarftingTable = [[['', 0],['', 0]],[['', 0],['', 0]]];
 let ancienCoordonnee = [0,0];
 let inMain = ['',0] ;
@@ -56,17 +56,51 @@ export function chargeAfficheAventure(){
     };
 };
 
-export function isOnSlot(x,y){
-    if(y > (innerHeight/5)*4){
-
-    }else{
-        inMain[0] = inventaire[Math.floor(y/(innerHeight/5)+1)][Math.floor(x/(((innerWidth/21)*3*13)/10))][0];
-        inMain[1] = inventaire[Math.floor(y/(innerHeight/5)+1)][Math.floor(x/(innerWidth/10))][1];
+function isOnSlot(x,y){
+    var constanteX = Math.floor((x/(innerWidth/15.7)))-1
+    var constanteY = Math.floor(y/(innerHeight/5))+1
+    if(constanteX < 10 && data.isInventaire){
+        if(constanteY >= 5){
+            inMain[0] = inventaire[0][constanteX][0];
+            inMain[1] = inventaire[0][constanteX][1];
+            inventaire[0][constanteX][0] = "";
+        }else{
+            inMain[0] = inventaire[constanteY][constanteX][0];
+            inMain[1] = inventaire[constanteY][constanteX][1];
+            inventaire[constanteY][constanteX][0] = "";
+        };
     };
-}
+};
+function depotOnSlot(x,y){
+    var constanteX = Math.floor((x/(innerWidth/15.7)))-1
+    var constanteY = Math.floor(y/(innerHeight/5))+1
+    if(constanteX < 10 && data.isInventaire){
+        if(constanteY >= 5){
+            if(inventaire[0][constanteX][0] === ""){
+                inventaire[0][constanteX][0] = inMain[0]; 
+                inventaire[0][constanteX][1] = inMain[1];
+                inMain[0] = ""
+            };
+        }else{
+            if(inventaire[constanteY][constanteX][0] === ""){
+                inventaire[constanteY][constanteX][0] = inMain[0]; 
+                inventaire[constanteY][constanteX][1] = inMain[1];
+                inMain[0] = ""
+            };
+        };
+    };
+};
+let coordonneeX = 0;
+let coordonneeY = 0;
 
-window.addEventListener("click",(event) =>{
-    const coordonneeX = event.clientX
-    const coordonneeY = event.clientY
+window.addEventListener("mousedown",(event) =>{
+    coordonneeX = event.clientX
+    coordonneeY = event.clientY
     isOnSlot(coordonneeX,coordonneeY)
+});
+
+window.addEventListener("mouseup" , () => {
+    coordonneeX = event.clientX
+    coordonneeY = event.clientY
+    depotOnSlot(coordonneeX,coordonneeY)
 });
