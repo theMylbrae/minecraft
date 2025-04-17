@@ -3,7 +3,7 @@ import {sreenPlayer,sreenPlayerH, inventaireAffichage,casseraff} from "../main.j
 import { map } from "./map.js";
 import { herbe,herbeTerre } from "../interaction/interactionMap.js";
 import { statuBloc , constante, statuPlayer} from "../screen/img.js";
-import {chargeAfficheAventure, inventaire,restInInventaire} from "../player/inventaire.js"
+import {chargeAfficheAventure, inventaire,restInInventaire,chargeAfficheCraftingTableInventaire} from "../player/inventaire.js"
 
 export const main = ["Buche","Terre","Herbe"]
 export const piocheBois = [["Pierre","Buche","Terre","Herbe"]]
@@ -55,6 +55,7 @@ export function frame(framePerMinute){
         sreenPlayer();
         sreenPlayerH();
         inventaireAffichage();
+        chargeAfficheCraftingTableInventaire();
         chargeAfficheAventure();
         restInInventaire();
     }, 1000/framePerMinute);

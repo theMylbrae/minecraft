@@ -1,8 +1,8 @@
 import { data, main, piocheBois } from "../world/data.js";
-import { objInventaireAffichage,objInventaireAffichage0 } from "../main.js";
+import { objInventaireAffichage,objInventaireAffichage0,objCraftingTableInventaireAffichage } from "../main.js";
 
 export let inventaire = [[['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
-export let inventaireCarftingTable = [[['', 0],['', 0]],[['', 0],['', 0]]];
+export let inventaireCarftingTable = [[['Terre', 64],['', 0]],[['Terre', 64],['', 0]]];
 let ancienCoordonnee = [0,0];
 let inMain = ['',0] ;
 export function InInventaire(){
@@ -55,15 +55,23 @@ export function chargeAfficheAventure(){
         };
     };
 };
+export function chargeAfficheCraftingTableInventaire(){
+    if(data.isInventaire){
+        for(var y = 0;y < inventaireCarftingTable.length;y++){
+            for(var x = 0;x < inventaireCarftingTable[0].length; x++){
+                if(inventaireCarftingTable[y][x][0] != ""){objCraftingTableInventaireAffichage(inventaireCarftingTable[y][x][0],inventaireCarftingTable[y][x][1]+"",x,y),console.log(x,y)}
+            };
+        };
+    };
+};
 
 function isOnSlot(x,y){
     var constanteX = Math.floor((x/(innerWidth/15.7)))-1
     var constanteY = Math.floor(y/(innerHeight/5))+1
-    if(0 <= constanteX < 10 && data.isInventaire){
+    if(0 <= constanteX && constanteX < 10 && data.isInventaire){
         if(constanteY >= 5){
             ancienCoordonnee[0] = 0; 
             ancienCoordonnee[1] = constanteX; 
-            console.log(constanteX)
             inMain[0] = inventaire[0][constanteX][0];
             inMain[1] = inventaire[0][constanteX][1];
             inventaire[0][constanteX][0] = "";
@@ -74,26 +82,36 @@ function isOnSlot(x,y){
             inMain[1] = inventaire[constanteY][constanteX][1];
             inventaire[constanteY][constanteX][0] = "";
         };
+    }else if( 11 <= constanteX <= 12 && data.isInventaire && 1 <= constanteY <= 2){
+        ancienCoordonnee[0] = constanteY; 
+        ancienCoordonnee[1] = constanteX; 
+        inMain[0] = inventaireCarftingTable[constanteY-1][constanteX-11][0];
+        inMain[1] = inventaireCarftingTable[constanteY-1][constanteX-11][1];
+        inventaireCarftingTable[constanteY-1][constanteX-11][0] = "";
     };
 };
 function depotOnSlot(x,y){
     var constanteX = Math.floor((x/(innerWidth/15.7)))-1
     var constanteY = Math.floor(y/(innerHeight/5))+1
-    if(0 <= constanteX < 10 && data.isInventaire){
+    console.log(inventaireCarftingTable)
+    if(0 <= constanteX && constanteX < 10 && data.isInventaire){
         if(constanteY >= 5 && inventaire[0][constanteX][0] === ""){
             inventaire[0][constanteX][0] = inMain[0]; 
             inventaire[0][constanteX][1] = inMain[1];
             inMain[0] = ""
-        }else if(constanteY != 5 && inventaire[constanteY][constanteX][0] === ""){
+        }else if(0 <= constanteY < 5 && inventaire[constanteY][constanteX][0] === ""){
             inventaire[constanteY][constanteX][0] = inMain[0]; 
             inventaire[constanteY][constanteX][1] = inMain[1];
             inMain[0] = ""
         }else if (inMain[0] != ""){
-            console.log(ancienCoordonnee)
             inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][0] = inMain[0];
             inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][1] = inMain[1];
             inMain[0] = ""
         }
+    }else if( 11 <= constanteX && constanteX <= 12 && data.isInventaire && 1 <= constanteY <= 2){
+        inventaireCarftingTable[constanteY-1][constanteX-11][0] = inMain[0]
+        inventaireCarftingTable[constanteY-1][constanteX-11][1] = inMain[1]
+        inMain[0] = ""
     }else if (inMain[0] != "" && data.isInventaire){
         inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][0] = inMain[0];
         inventaire[ancienCoordonnee[0]][ancienCoordonnee[1]][1] = inMain[1];
