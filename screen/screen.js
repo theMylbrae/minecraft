@@ -9,7 +9,7 @@ export function init(){
     canvas.width = innerWidth*3
     canvas.height = innerWidth*3
     canvas.style.marginLeft = -((innerWidth/19)*2)+"px"
-    canvas.style.marginTop = ((innerHeight-innerWidth)/1.25)+"px"
+    canvas.style.marginTop = (innerWidth+((innerWidth/19)*4))*-0.3638555925952195+"px"
     var body = document.querySelector("body")
     body.style.margin = "0%"
     body.style.overflow = "hidden"

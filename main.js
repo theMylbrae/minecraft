@@ -42,8 +42,11 @@ export function inventaireAffichage(){
     };
 };
 export function objInventaireAffichage(matrice,x,y){
-    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),(innerWidth*3/19)*(y+7.80),innerWidth*3/35,innerWidth*3/35)
-}
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(y+6.2),innerWidth*3/35,innerWidth*3/35)
+};
+export function objInventaireAffichage0(matrice,x){
+    ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+2.89),((innerWidth*3)/17.5)*(11.38),innerWidth*3/35,innerWidth*3/35)
+};
 frame(data.frame)
 falling()
 document.oncontextmenu = function() {
@@ -65,8 +68,8 @@ window.addEventListener("keydown",(event) =>{
 })
 
 window.addEventListener("mousedown", (event) =>{
-    const breakingAffConstanteX = (event.screenX/(innerWidth/15.7))
-    const breakingAffConstanteY = (event.screenY/(innerWidth/15.7))-0.7
+    const breakingAffConstanteX = event.clientX/(innerWidth/15.7)+0.7
+    const breakingAffConstanteY = (event.clientY/(innerWidth/15.7))+0.95
     if(data.isInventaire === false){
         data.isInteracting = true;
         casser(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));

@@ -70,8 +70,8 @@ window.addEventListener("keydown",(event) => {
 let breakingAffConstanteX = 0
 let breakingAffConstanteY = 0
 window.addEventListener("mousemove", (event) =>{
-    breakingAffConstanteX = (event.screenX/(innerWidth/15.7))
-    breakingAffConstanteY = (event.screenY/(innerWidth/15.7))-0.7
+    breakingAffConstanteX = event.clientX/(innerWidth/15.7)+0.7
+    breakingAffConstanteY = (event.clientY/(innerWidth/15.7))+0.95
 })
 window.addEventListener("keypress",(event) =>{
     if(event.code === "KeyQ"){

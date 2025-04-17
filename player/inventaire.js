@@ -1,5 +1,5 @@
 import { data, main, piocheBois } from "../world/data.js";
-import { objInventaireAffichage } from "../main.js";
+import { objInventaireAffichage,objInventaireAffichage0 } from "../main.js";
 
 export let inventaire = [[['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
 
@@ -44,7 +44,11 @@ export function chargeAfficheAventure(){
     if(data.isInventaire){
         for(var y = 0; y < inventaire.length;y++){
             for(var x = 0;x < inventaire[0].length;x++){
-                if(inventaire[y][x][0] != ""){objInventaireAffichage(inventaire[y][x][0],x,y)};
+                if(y === 0){
+                    if(inventaire[y][x][0] != ""){objInventaireAffichage0(inventaire[y][x][0],x)};
+                }else{
+                    if(inventaire[y][x][0] != ""){objInventaireAffichage(inventaire[y][x][0],x,y)};
+                };
             };
         };
     };
