@@ -34,6 +34,15 @@ export function inventaireAffichage(){
     if(data.isInventaire){
         ctx.drawImage(img.Inventaire,(innerWidth/21)*6,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,(innerWidth/21)*3*13,((innerWidth/21)*3*13)*(9/16));
         ctx.drawImage(img.Tabledecraftinterne,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,constante*8,constante*8);
+        ctx.drawImage(img.resultCraft,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*3.5,constante*8,constante*8);
+    };
+};
+export function craftingTableAffichage(){
+    var vide = []
+    if(data.isInCraftingTable){
+        ctx.drawImage(img.Inventaire,(innerWidth/21)*6,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,(innerWidth/21)*3*13,((innerWidth/21)*3*13)*(9/16));
+        ctx.drawImage(img.Tabledecraft,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*2.6,constante*12,constante*12);
+        ctx.drawImage(img.resultCraft,constante*3*13.5,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*4.016,constante*8,constante*8);
     };
 };
 export function objInventaireAffichage(matrice,nbr,x,y){
@@ -50,7 +59,14 @@ export function objCraftingTableInventaireAffichage(matrice,nbr,x,y){
     ctx.drawImage(obj[matrice],(innerWidth*3/19)*(x+14.05),((innerWidth*3)/20.1)*(y+8.35),innerWidth*3/35,innerWidth*3/35);
     ctx.font = innerWidth/19+"px" +" arial";
     ctx.fillText(nbr,(innerWidth*3/19)*(x+14.55),((innerWidth*3)/20.1)*(y+9.1));
-}
+};
+export function affichageObjetCraft(){
+    if(data.whatIsCrafting != "" && data.isInventaire){
+        ctx.drawImage(obj[data.whatIsCrafting],constante*3*14.55,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*3.89,innerWidth*3/35,innerWidth*3/35);
+    };
+};
+
+
 frame(data.frame)
 falling()
 document.oncontextmenu = function() {

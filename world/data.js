@@ -1,14 +1,14 @@
 import {init,loading} from "../screen/screen.js"
-import {sreenPlayer,sreenPlayerH, inventaireAffichage,casseraff} from "../main.js"
+import {sreenPlayer,sreenPlayerH, inventaireAffichage,casseraff,affichageObjetCraft,craftingTableAffichage} from "../main.js"
 import { map } from "./map.js";
-import { herbe,herbeTerre } from "../interaction/interactionMap.js";
+import { herbe,herbeTerre, yDeDépart } from "../interaction/interactionMap.js";
 import { statuBloc , constante, statuPlayer} from "../screen/img.js";
-import {chargeAfficheAventure, inventaire,restInInventaire,chargeAfficheCraftingTableInventaire} from "../player/inventaire.js"
+import {chargeAfficheAventure, inventaire,restInInventaire,chargeAfficheCraftingTableInventaire,craftRecipeInventaire,finInventaireCraftingInventaire} from "../player/inventaire.js"
 
-export const main = ["Buche","Terre","Herbe"]
-export const piocheBois = [["Pierre","Buche","Terre","Herbe"]]
-export const piochePierre = ["Pierre","Buche","Terre","Herbe","Fer"]
-export const piocheFer = ["Pierre","Buche","Terre","Herbe","Fer","Copper","Diamand"]
+export const main = ["Buche","Terre","Herbe","TableCraft"]
+export const piocheBois = ["Pierre"] + main
+export const piochePierre = ["Fer","Copper"] + piocheBois
+export const piocheFer = ["Diamand"] + piochePierre
 
 export const data = {
     cX : 0,
@@ -37,27 +37,33 @@ export const data = {
     playerStatuMouv : 0,
     isInteracting : false,
     inventaireIsInMain : false,
+    whatIsCrafting : "",
+    isInCraftingTable : false,
 }; 
 data.cX = (map[0].length-1)/2
-data.cY = ((map.length-1)/2)+100
+data.cY = yDeDépart()
 data.cXtemp = data.cX*100
 data.cYtemp = data.cY*100
 
 export const vide = ["Air"]
-export const solide = ["Pierre","Buche","Feuille","Terre","Herbe","Fer","Copper","Diamand"]
+export const solide = ["Pierre","Buche","Feuille","Terre","Herbe","Fer","Copper","Diamand","Planche","TableCraft"]
 
 
 export function frame(framePerMinute){
     const frame = setInterval(() => {
+        craftRecipeInventaire()
         init();
         loading();
         casseraff();
         sreenPlayer();
         sreenPlayerH();
         inventaireAffichage();
+        craftingTableAffichage();
         chargeAfficheCraftingTableInventaire();
         chargeAfficheAventure();
+        affichageObjetCraft();
         restInInventaire();
+        finInventaireCraftingInventaire();
     }, 1000/framePerMinute);
 };
 

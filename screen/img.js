@@ -2,18 +2,26 @@ export const img = {
     Air : new Image(),
     Pierre : new Image(),
     Buche : new Image(),
+    Planche: new Image(),
     Feuille : new Image(),
     Herbe : new Image(),
     Terre : new Image(),
     Copper : new Image(),
     Fer : new Image(),
     Diamand : new Image(),
+    TableCraft : new Image(),
+
+
     Inventaire : new Image(),
     Tabledecraftinterne : new Image(),
+    resultCraft : new Image(),
+    Tabledecraft : new Image(),
 };
 
 img.Inventaire.src = "../texture/player/interaction/inventaire.png"
 img.Tabledecraftinterne.src = "../texture/player/interaction/tabledevraftinterne.png"
+img.resultCraft.src = "../texture/player/interaction/resultCraft.png"
+img.Tabledecraft.src = "../texture/player/interaction/tabledecraft.png"
 
 img.Air.src = "../texture/blocs/Air.png";
 img.Pierre.src = "../texture/blocs/Pierre.png";
@@ -24,6 +32,8 @@ img.Terre.src = "../texture/blocs/Terre.png";
 img.Copper.src = "../texture/blocs/Copper.png";
 img.Fer.src = "../texture/blocs/Fer.png";
 img.Diamand.src = "../texture/blocs/Diamand.png";
+img.Planche.src = "../texture/blocs/Planche.png";
+img.TableCraft.src = "../texture/blocs/TableCraft.png"
 
 export const obj = {
     Terre : new Image(),
@@ -34,10 +44,16 @@ export const obj = {
     Copper : new Image(),
     Diamand : new Image(),
     Buche : new Image(),
+    Planche : new Image(),
+    TableCraft : new Image(),
+    stick : new Image(),
 }
 
 obj.Terre.src = "../texture/blocs/Terre.png"
 obj.Buche.src = "../texture/blocs/Buche.png"
+obj.Planche.src = "../texture/blocs/Planche.png"
+obj.TableCraft.src = "../texture/blocs/TableCraft.png"
+obj.stick.src = "../texture/obj/stick.png"
 
 export const statuPlayer = {
     statLB0 : new Image(),

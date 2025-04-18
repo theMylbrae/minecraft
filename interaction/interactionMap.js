@@ -4,6 +4,8 @@ import { casseraff } from "../main.js";
 import { statuBloc } from "../screen/img.js";
 import { InInventaire,isOutil ,inventaire,restInInventaire} from "../player/inventaire.js";
 
+let cooldownCraftingTable = 0
+
 export function casser(x,y){
     if(solide.includes(map[data.cY+4-y][data.cX+x-8])){
         var statu = 0
@@ -52,8 +54,22 @@ export function placer(x,y){
         inventaire[0][data.inMain][1] -= 1;
         restInInventaire();
     };
-    data.isInteracting = false;
 };
+
+function isCraftingTable(x,y){
+    cooldownCraftingTable = 0;
+    if(map[data.cY+4-y][data.cX+x-8] === "TableCraft"){data.isInCraftingTable = true};
+    var boucle = setInterval(() => {
+        cooldownCraftingTable++;
+        if(cooldownCraftingTable>=2){clearInterval(boucle)};
+    }, 100);
+};
+
+export function yDeDépart(){
+    for(var y = 0; y < map.length; y++){
+        if(map[y][data.cX] === "Air"){return y}
+    }
+}
 
 window.addEventListener("keydown",(event) => {
     if(event.code === "Digit1"){isOutil(0), data.inMain = 0}
@@ -76,11 +92,18 @@ window.addEventListener("mousemove", (event) =>{
 window.addEventListener("keypress",(event) =>{
     if(event.code === "KeyQ"){
         if(!data.isInventaire){
-            data.isInteracting = true;
             placer(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
         }
     };
 });
+window.addEventListener("keypress",(event) =>{
+    if(event.code === "KeyR"){
+        console.log(cooldownCraftingTable)
+        if(!data.isInCraftingTable){
+            isCraftingTable(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
+        }else if(cooldownCraftingTable>=2){data.isInCraftingTable = false}
+    };
+})
 
 
 let blockTickX = [];
