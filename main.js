@@ -60,10 +60,24 @@ export function objCraftingTableInventaireAffichage(matrice,nbr,x,y){
     ctx.font = innerWidth/19+"px" +" arial";
     ctx.fillText(nbr,(innerWidth*3/19)*(x+14.55),((innerWidth*3)/20.1)*(y+9.1));
 };
-export function affichageObjetCraft(){
-    if(data.whatIsCrafting != "" && data.isInventaire){
-        ctx.drawImage(obj[data.whatIsCrafting],constante*3*14.55,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*3.89,innerWidth*3/35,innerWidth*3/35);
+
+export function objCraftingTableStorageAffichage(matrice,nbr,x,y){
+    if(matrice != ""){
+        ctx.drawImage(obj[matrice],(innerWidth*3/16.50)*(x+12.25),((innerWidth*3)/16.5)*(y+6.8),innerWidth*3/35,innerWidth*3/35);
+        ctx.font = innerWidth/19+"px" +" arial";
+        ctx.fillText(nbr,(innerWidth*3/16.50)*(x+12.75),((innerWidth*3)/16.5)*(y+7.5));
     };
+};
+export function affichageObjetCraft(){
+    if(data.isInventaire){
+        if(data.whatIsCrafting != ""){
+            ctx.drawImage(obj[data.whatIsCrafting],constante*3*14.55,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*3.89,innerWidth*3/35,innerWidth*3/35);
+        }
+    }else if(data.isInCraftingTable){
+        if(data.whatIsCrafting != ""){
+            ctx.drawImage(obj[data.whatIsCrafting],constante*3*14.55,(innerWidth+((innerWidth/19)*4))*0.3638555925952195*4.4,innerWidth*3/35,innerWidth*3/35);
+        }
+    }
 };
 
 
@@ -90,7 +104,7 @@ window.addEventListener("keydown",(event) =>{
 window.addEventListener("mousedown", (event) =>{
     const breakingAffConstanteX = event.clientX/(innerWidth/15.7)+0.7
     const breakingAffConstanteY = (event.clientY/(innerWidth/15.7))+0.95
-    if(data.isInventaire === false){
+    if(!data.isInventaire && !data.isInCraftingTable){
         data.isInteracting = true;
         casser(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
     }
@@ -98,6 +112,6 @@ window.addEventListener("mousedown", (event) =>{
 
 window.addEventListener("keypress",(event) =>{
     if(event.code === "KeyE" && data.isInventaire){data.isInventaire = false}
-    else if(event.code === "KeyE" && data.isInventaire === false){data.isInventaire = true}
+    else if(event.code === "KeyE" && !data.isInventaire && !data.isInCraftingTable){data.isInventaire = true}
 })
 

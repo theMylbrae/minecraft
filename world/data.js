@@ -3,7 +3,7 @@ import {sreenPlayer,sreenPlayerH, inventaireAffichage,casseraff,affichageObjetCr
 import { map } from "./map.js";
 import { herbe,herbeTerre, yDeDépart } from "../interaction/interactionMap.js";
 import { statuBloc , constante, statuPlayer} from "../screen/img.js";
-import {chargeAfficheAventure, inventaire,restInInventaire,chargeAfficheCraftingTableInventaire,craftRecipeInventaire,finInventaireCraftingInventaire} from "../player/inventaire.js"
+import {chargeAfficheAventure, carftCraftingTable,restInInventaire,craftingTableAventure,chargeAfficheCraftingTableInventaire,craftRecipeInventaire,finInventaireCraftingInventaire,finCraftingTableEspace} from "../player/inventaire.js"
 
 export const main = ["Buche","Terre","Herbe","TableCraft"]
 export const piocheBois = ["Pierre"] + main
@@ -61,9 +61,12 @@ export function frame(framePerMinute){
         craftingTableAffichage();
         chargeAfficheCraftingTableInventaire();
         chargeAfficheAventure();
+        craftingTableAventure();
         affichageObjetCraft();
         restInInventaire();
+        finCraftingTableEspace();
         finInventaireCraftingInventaire();
+        carftCraftingTable();
     }, 1000/framePerMinute);
 };
 

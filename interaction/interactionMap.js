@@ -91,17 +91,17 @@ window.addEventListener("mousemove", (event) =>{
 })
 window.addEventListener("keypress",(event) =>{
     if(event.code === "KeyQ"){
-        if(!data.isInventaire){
+        if(!data.isInventaire && !data.isInCraftingTable){
             placer(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
-        }
+        };
     };
 });
 window.addEventListener("keypress",(event) =>{
-    if(event.code === "KeyR"){
-        console.log(cooldownCraftingTable)
+    if(event.code === "KeyR" && !data.isInventaire){
         if(!data.isInCraftingTable){
+            data.isInteracting = true;
             isCraftingTable(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
-        }else if(cooldownCraftingTable>=2){data.isInCraftingTable = false}
+        }else if(cooldownCraftingTable>=2){data.isInCraftingTable = false;data.isInteracting = false}
     };
 })
 

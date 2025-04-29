@@ -47,13 +47,26 @@ export const obj = {
     Planche : new Image(),
     TableCraft : new Image(),
     stick : new Image(),
+    piocheBois: new Image(),
+    piochePierre : new Image(),
+    piocheFer : new Image(),
 }
 
-obj.Terre.src = "../texture/blocs/Terre.png"
-obj.Buche.src = "../texture/blocs/Buche.png"
-obj.Planche.src = "../texture/blocs/Planche.png"
+obj.Pierre.src = "../texture/blocs/Pierre.png";
+obj.Buche.src = "../texture/blocs/Buche.png";
+obj.Feuille.src = "../texture/blocs/Feuille.png";
+obj.Herbe.src = "../texture/blocs/Herbe.png";
+obj.Terre.src = "../texture/blocs/Terre.png";
+obj.Copper.src = "../texture/blocs/Copper.png";
+obj.Fer.src = "../texture/blocs/Fer.png";
+obj.Diamand.src = "../texture/blocs/Diamand.png";
+obj.Planche.src = "../texture/blocs/Planche.png";
 obj.TableCraft.src = "../texture/blocs/TableCraft.png"
+
 obj.stick.src = "../texture/obj/stick.png"
+obj.piocheBois.src = "../texture/obj/piocheBois.png"
+obj.piochePierre.src = "../texture/obj/piochePierre.png"
+obj.piocheFer.src = "../texture/obj/piocheFer.png"
 
 export const statuPlayer = {
     statLB0 : new Image(),
