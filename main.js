@@ -4,6 +4,7 @@ import { img , constante, statuBloc, statuPlayer,obj} from "./screen/img.js";
 import { left ,right,jump,falling,running} from "./interaction/mouv.js";
 import { casser } from "./interaction/interactionMap.js";
 import { inventaire } from "./player/inventaire.js";
+import { isLoad } from "./world/map.js";
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -80,13 +81,14 @@ export function affichageObjetCraft(){
     }
 };
 
-
-frame(data.frame)
-falling()
+if(isLoad){
+    frame(data.frame)
+    falling()
+}
 document.oncontextmenu = function() {
     return false;
-  }
-  
+}
+
 
 window.addEventListener("keydown",(event) =>{
     if((event.code === "KeyA" || event.code === "ArrowLeft")){left()}

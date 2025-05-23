@@ -1,7 +1,7 @@
 import { data, main, piocheBois } from "../world/data.js";
 import { objInventaireAffichage,objInventaireAffichage0,objCraftingTableInventaireAffichage,objCraftingTableStorageAffichage } from "../main.js";
 
-export let inventaire = [[['TableCraft', 1], ['Pierre', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
+export let inventaire = [[['Buche', 64], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]], [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]];
 export let inventaireCarftingTable = [[['', ],['', ]],[['', 0],['', 0]]];
 export let TableDeCraftExpace = [[['',0],['',0],['',0]],[['',0],['',0],['',0]],[['',0],['',0],['',0]]]
 let ancienCoordonnee = [0,0];
@@ -328,14 +328,13 @@ export function carftCraftingTable(){
 function recupCraftRecipeInventaire(x,y){
     var constanteX = (x/(innerWidth/15.7))-1
     var constanteY = y/(innerHeight/5)+1
-    console.log((x/(innerWidth/15.7))-1,y/(innerHeight/5)+1)
     if(11.80 <= constanteX && constanteX <= 12.54 && 3.66 <= constanteY && constanteY <= 4.22 && data.isInventaire){
         if(data.whatIsCrafting != ""){
             if(data.whatIsCrafting==="Planche"){result = ["Planche",4]}
             else if(data.whatIsCrafting==="TableCraft"){result = ["TableCraft",1]}
             else if(data.whatIsCrafting==="stick"){result = ["stick",4]}
             data.whatIsCrafting = ""
-            Craft(TableDeCraftExpace)
+            Craft(inventaireCarftingTable)
             Aftercraft()
         };
     }else if(11.80 <= constanteX && constanteX <= 12.54 && 4.70 <= constanteY && constanteY <= 5.27 && data.isInCraftingTable){

@@ -1,0 +1,40 @@
+﻿version 1:
+* création d’un tableau d’image sur une page HTML.
+* création d’une map plate avec 2 blocs (Herbe,Terre)(mise en place de la norme des images: commencent avec une majuscule et retire les espaces en les remplaçant par une majuscule au nouveau mot.
+* set de la map en une matrice map = [axe y(la hauteur)][axe x(la largeur)].
+* set du personnage au centre : le tableau bouge mais pas l’image du perso.
+* set des coordonnées avec des floats du joueur.
+* set des touches interactives en touches universelles (utilisablent sur azerty et qwerty)avec touche classique W.Q.S.D. et flèche directionnelle.
+* set de la constante de gravité (le joueur par défaut tombe, plus initialisation de la variable hauteur par prévention des dégâts).
+* set des blocs vides et solides.
+* problème de chargement après déplacement du joueur
+* fin de la version 1
+version 2:
+* création d’un canvas sur la page HTML.
+* création du tableau dans le canvas.
+* récupération  de la maps de la constante chute et la fonction chute.
+* ajout de module java script (besoin de simuler un serveur).
+* problème de chargement non réglé.
+* ajout de nouvelles photos.
+* solution trouvé ( charger les images dans une bibliothèque)
+* problème de coordonnées ( javascript n’aime pas les floats)
+* fin version 2 car les floats sont utilisés partout.
+version 3 et alpha:
+* recréation d’un système de coordonnées avec des entiers : coordonnéesXTemp = coordonnéesX*100
+* amélioration de la gravité qui vérifie les deux côtés du joueur. Pareille pour le saut.
+* blocage du joueur si le bloc d’à côté est solide.
+* ajout de la fonction cassé (2 jours de codage entier) plus la fonction placer.
+* ajout de l’ui d’inventaire et mise à jour des touches : a – placer; r – interagir avec blocs spéciaux; e – inventaire.
+* création du tableau de l’inventaire et affichage plus interaction (2 jours de codage entier). 
+* ajout de la table de craft de l’inventaire 4*4
+* ajout de la fonction craft
+* ajout d’objet – Planche; TableDeCraft;Stick.
+* ajout de l’ui de la table de craft plus intéraction.(réutilisation de l’ui de l’inventaire)
+* ajout de craft spécifique de la table de craft(équipement)
+* ajout de la liste des équipements (le joueur ne peut récupérer certains blocs qu'avec certains équipement)
+* ajout de la barre d'interaction du joueur.
+* ajout du nombre d’objet par stack d’objet.
+version expérimental:
+* mise en ligne du site internet (https://minecraft-sable.vercel.app/  version alpha).
+* intégration de la génération du monde procédural au code javascript.
+* ajout du bloc de limite de map.

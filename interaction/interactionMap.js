@@ -111,29 +111,31 @@ let blockTickY = [];
 let etatBlockTick = [];
 
 export function herbe() {
-    for (var y = 0; y < 100; y++) {
-        for (var x = 0; x < 100; x++) {
-            // Vérification des conditions initiales
-            if (
-                map[data.cY - 49 + y][data.cX - 50 + x] === "Air" &&
-                (map[data.cY - 50 + y][data.cX - 49 + x] === "Herbe" || map[data.cY - 50 + y][data.cX - 51 + x] === "Herbe") &&
-                map[data.cY - 50 + y][data.cX - 50 + x] === "Terre"
-            ) {
-                // Si les coordonnées ne sont pas déjà dans les tableaux, on les ajoute
-                if (!blockTickX.includes(data.cX - 50 + x) && !blockTickY.includes(data.cY - 50 + y)) {
-                    blockTickX.push(data.cX - 50 + x);
-                    blockTickY.push(data.cY - 50 + y);
-                    etatBlockTick.push(1); // Initialisation de l'état à 1
-                } else {
-                    // Si les coordonnées sont déjà présentes, on incrémente l'état
-                    const index = blockTickX.indexOf(data.cX - 50 + x);
-                    if (index !== -1 && blockTickY[index] === data.cY - 50 + y) {
-                        etatBlockTick[index]++; // On incrémente l'état
-                        if (etatBlockTick[index] >= 200*60) {
-                            map[data.cY - 50 + y][data.cX - 50 + x] = "Herbe"; // Modification de la carte
-                            etatBlockTick.splice(index, 1); // On retire l'état du tableau
-                            blockTickX.splice(index, 1); // On retire la coordonnée X
-                            blockTickY.splice(index, 1); // On retire la coordonnée Y
+    if(data.cY > 55){
+        for (var y = 0; y < 100; y++) {
+            for (var x = 0; x < 100; x++) {
+                //alert(data.cY - 49 + y)
+                if (
+                    map[data.cY - 49 + y][data.cX - 50 + x] === "Air" &&
+                    (map[data.cY - 50 + y][data.cX - 49 + x] === "Herbe" || map[data.cY - 50 + y][data.cX - 51 + x] === "Herbe") &&
+                    map[data.cY - 50 + y][data.cX - 50 + x] === "Terre"
+                ) {
+                    // Si les coordonnées ne sont pas déjà dans les tableaux, on les ajoute
+                    if (!blockTickX.includes(data.cX - 50 + x) && !blockTickY.includes(data.cY - 50 + y)) {
+                        blockTickX.push(data.cX - 50 + x);
+                        blockTickY.push(data.cY - 50 + y);
+                        etatBlockTick.push(1); // Initialisation de l'état à 1
+                    } else {
+                        // Si les coordonnées sont déjà présentes, on incrémente l'état
+                        const index = blockTickX.indexOf(data.cX - 50 + x);
+                        if (index !== -1 && blockTickY[index] === data.cY - 50 + y) {
+                            etatBlockTick[index]++; // On incrémente l'état
+                            if (etatBlockTick[index] >= 200*60) {
+                                map[data.cY - 50 + y][data.cX - 50 + x] = "Herbe"; // Modification de la carte
+                                etatBlockTick.splice(index, 1); // On retire l'état du tableau
+                                blockTickX.splice(index, 1); // On retire la coordonnée X
+                                blockTickY.splice(index, 1); // On retire la coordonnée Y
+                            }
                         }
                     }
                 }
@@ -143,25 +145,27 @@ export function herbe() {
 }
 
 export function herbeTerre() {
-    for (var y = 0; y < 100; y++) {
-        for (var x = 0; x < 100; x++) {
-            // Vérification des conditions initiales
-            if (map[data.cY - 49 + y][data.cX - 50 + x] != "Air" && map[data.cY - 50 + y][data.cX - 50 + x] === "Herbe") {
-                // Si les coordonnées ne sont pas déjà dans les tableaux, on les ajoute
-                if (!blockTickX.includes(data.cX - 50 + x) && !blockTickY.includes(data.cY - 50 + y)) {
-                    blockTickX.push(data.cX - 50 + x);
-                    blockTickY.push(data.cY - 50 + y);
-                    etatBlockTick.push(1); // Initialisation de l'état à 1
-                } else {
-                    // Si les coordonnées sont déjà présentes, on incrémente l'état
-                    const index = blockTickX.indexOf(data.cX - 50 + x);
-                    if (index !== -1 && blockTickY[index] === data.cY - 50 + y) {
-                        etatBlockTick[index]++; // On incrémente l'état
-                        if (etatBlockTick[index] >= 100*10) {
-                            map[data.cY - 50 + y][data.cX - 50 + x] = "Terre"; // Modification de la carte
-                            etatBlockTick.splice(index, 1); // On retire l'état du tableau
-                            blockTickX.splice(index, 1); // On retire la coordonnée X
-                            blockTickY.splice(index, 1); // On retire la coordonnée Y
+    if(data.cY > 55){
+        for (var y = 0; y < 100; y++) {
+            for (var x = 0; x < 100; x++) {
+                // Vérification des conditions initiales
+                if (map[data.cY - 49 + y][data.cX - 50 + x] != "Air" && map[data.cY - 50 + y][data.cX - 50 + x] === "Herbe") {
+                    // Si les coordonnées ne sont pas déjà dans les tableaux, on les ajoute
+                    if (!blockTickX.includes(data.cX - 50 + x) && !blockTickY.includes(data.cY - 50 + y)) {
+                        blockTickX.push(data.cX - 50 + x);
+                        blockTickY.push(data.cY - 50 + y);
+                        etatBlockTick.push(1); // Initialisation de l'état à 1
+                    } else {
+                        // Si les coordonnées sont déjà présentes, on incrémente l'état
+                        const index = blockTickX.indexOf(data.cX - 50 + x);
+                        if (index !== -1 && blockTickY[index] === data.cY - 50 + y) {
+                            etatBlockTick[index]++; // On incrémente l'état
+                            if (etatBlockTick[index] >= 100*10) {
+                                map[data.cY - 50 + y][data.cX - 50 + x] = "Terre"; // Modification de la carte
+                                etatBlockTick.splice(index, 1); // On retire l'état du tableau
+                                blockTickX.splice(index, 1); // On retire la coordonnée X
+                                blockTickY.splice(index, 1); // On retire la coordonnée Y
+                            }
                         }
                     }
                 }

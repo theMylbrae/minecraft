@@ -2,6 +2,10 @@ import { map } from "../world/map.js";
 import { data,solide,vide} from "../world/data.js";
 import { margin } from "../screen/screen.js";
 
+let statuPlayerMouv = 0
+
+let animMouvPlayer = 15
+
 export function left(){
     if(data.mouvPlayer === false && !data.isInteracting){
         data.mouvPlayer = true
@@ -9,7 +13,7 @@ export function left(){
             if(vide.includes(map[Math.floor((data.cYtemp)/100)][Math.floor((data.cXtemp-1)/100)]) && vide.includes(map[Math.floor(data.cYtemp/100)+1][Math.floor((data.cXtemp-1)/100)])){
                 mouvAnimation()
                 data.isGoingLeft = true;
-                data.playerStatuMouv++;
+                statuPlayerMouv++;
                 data.cXtemp -= data.isRunning
                 data.marginX -= data.isRunning
                 if(Number.isInteger(data.cXtemp/100)){
@@ -38,7 +42,7 @@ export function right(){
             if(vide.includes(map[Math.floor(data.cYtemp/100)][Math.ceil((data.cXtemp+1)/100)]) && vide.includes(map[Math.floor(data.cYtemp/100)+1][Math.ceil((data.cXtemp+1)/100)])){
                 mouvAnimation()
                 data.isGoingLeft = false;
-                data.playerStatuMouv++;
+                statuPlayerMouv++;
                 data.cXtemp += data.isRunning
                 data.marginX += data.isRunning
                 if(Number.isInteger(data.cXtemp/100)){
@@ -126,28 +130,37 @@ export function running(){
 export function mouvAnimation(){
     if(!data.mouvPlayer){
         data.playerStatuMouv = 0;
+        statuPlayerMouv = 0;
+    }else if(statuPlayerMouv > 0 && statuPlayerMouv <= animMouvPlayer){
+        data.playerStatuMouv = 0
+    }else if(statuPlayerMouv > animMouvPlayer && statuPlayerMouv <= animMouvPlayer*2){
+        data.playerStatuMouv = 1
+    }else if(statuPlayerMouv > animMouvPlayer*2 && statuPlayerMouv <= animMouvPlayer*3){
+        data.playerStatuMouv = 2
+    }else if(statuPlayerMouv >animMouvPlayer*3 && statuPlayerMouv <= animMouvPlayer*4){
+        data.playerStatuMouv = 3
     };
     if(data.isGoingLeft){
         data.playerState = "statLB" + data.playerStatuMouv
         if(data.playerStatuMouv >= 3){
-            data.playerStatuMouv = 0;
+            statuPlayerMouv = 0;
         };
     }else{
         data.playerState = "statRB" + data.playerStatuMouv
         if(data.playerStatuMouv >= 3){
-            data.playerStatuMouv = 0;
+            statuPlayerMouv = 0;
         };
     };
     if(!data.isbreaking){
         if(data.isGoingLeft){
             data.playerStateH = "statLH" + data.playerStatuMouv;
             if(data.playerStatuMouv >= 3){
-                data.playerStatuMouv = 0;
+                statuPlayerMouv = 0;
             };
         }else{
             data.playerStateH = "statRH" + data.playerStatuMouv;
             if(data.playerStatuMouv >= 3){
-                data.playerStatuMouv = 0;
+                statuPlayerMouv = 0;
             };
         };
     };

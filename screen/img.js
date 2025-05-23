@@ -10,6 +10,7 @@ export const img = {
     Fer : new Image(),
     Diamand : new Image(),
     TableCraft : new Image(),
+    BugDeTexture : new Image(),
 
 
     Inventaire : new Image(),
@@ -33,7 +34,8 @@ img.Copper.src = "../texture/blocs/Copper.png";
 img.Fer.src = "../texture/blocs/Fer.png";
 img.Diamand.src = "../texture/blocs/Diamand.png";
 img.Planche.src = "../texture/blocs/Planche.png";
-img.TableCraft.src = "../texture/blocs/TableCraft.png"
+img.TableCraft.src = "../texture/blocs/TableCraft.png";
+img.BugDeTexture.src = "../texture/blocs/BugDeTexture.png";
 
 export const obj = {
     Terre : new Image(),

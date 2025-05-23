@@ -40,13 +40,14 @@ export const data = {
     whatIsCrafting : "",
     isInCraftingTable : false,
 }; 
-data.cX = (map[0].length-1)/2
-data.cY = yDeDépart()
+
+data.cX = (map[0].length - 1)/2
+data.cY = yDeDépart() + 1
 data.cXtemp = data.cX*100
 data.cYtemp = data.cY*100
 
 export const vide = ["Air"]
-export const solide = ["Pierre","Buche","Feuille","Terre","Herbe","Fer","Copper","Diamand","Planche","TableCraft"]
+export const solide = ["Pierre","Buche","Feuille","Terre","Herbe","Fer","Copper","Diamand","Planche","TableCraft","BugDeTexture"]
 
 
 export function frame(framePerMinute){
