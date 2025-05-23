@@ -38,3 +38,7 @@ version expérimental:
 * mise en ligne du site internet (https://minecraft-sable.vercel.app/  version alpha).
 * intégration de la génération du monde procédural au code javascript.
 * ajout du bloc de limite de map.
+
+https://minecraft-sable.vercel.app/
+
+https://github.com/theMylbrae/Minecraft.git

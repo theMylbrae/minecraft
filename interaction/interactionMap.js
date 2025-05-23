@@ -89,13 +89,12 @@ window.addEventListener("mousemove", (event) =>{
     breakingAffConstanteX = event.clientX/(innerWidth/15.7)+0.7
     breakingAffConstanteY = (event.clientY/(innerWidth/15.7))+0.95
 })
-window.addEventListener("keypress",(event) =>{
-    if(event.code === "KeyQ"){
-        if(!data.isInventaire && !data.isInCraftingTable){
-            placer(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
-        };
+document.oncontextmenu = function() {
+    if(!data.isInventaire && !data.isInCraftingTable){
+        placer(Math.floor(breakingAffConstanteX+(data.marginX/100)),Math.floor(breakingAffConstanteY+(data.marginY/100)));
     };
-});
+return false
+};
 window.addEventListener("keypress",(event) =>{
     if(event.code === "KeyR" && !data.isInventaire){
         if(!data.isInCraftingTable){

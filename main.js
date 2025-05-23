@@ -85,9 +85,7 @@ if(isLoad){
     frame(data.frame)
     falling()
 }
-document.oncontextmenu = function() {
-    return false;
-}
+
 
 
 window.addEventListener("keydown",(event) =>{
